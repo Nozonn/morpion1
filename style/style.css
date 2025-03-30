@@ -1,0 +1,188 @@
+
+:root {
+    --color-win: rgb(233, 88, 88);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: grid;
+    grid-template-rows: 100px 1fr 100px;
+    grid-template-areas:  
+    "header",
+    "main",
+    "footer";
+}
+
+header {
+    background-color: #a5a5a5;
+    display: flex;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 4rem;
+    margin-left: 10px;
+    border-right: 1px solid black;
+    padding-right: 15px;
+    height: 80%;
+}
+
+
+
+
+main {
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+}
+
+.game {
+    width: 70%;
+    margin: 50px 0;
+}
+
+.game header {
+    display: flex;
+    justify-content:space-around;
+    height: 50px;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+.game header :where(#player1, #player2) {
+    transition: .5s;
+}
+
+.game header .tour {
+    text-decoration: underline;
+    transform: scale(1.2);
+}
+
+.game header :not(.tour) {
+    opacity: 0.5;
+}
+
+.game header #score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    height: 50px;
+    margin: 20px;
+    border-radius: 20px;
+    opacity: 1;
+}
+
+.game header #score span {
+    opacity: 1;
+    margin: 0 5px;
+}
+
+
+.game .grid {
+    display: grid;
+    grid-template: repeat(3, 100px) / repeat(3, 100px);
+    place-content: center;
+}
+
+
+.game .grid .case {
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.game .grid .case:nth-child(3n+1){
+    border-left: 2px solid black;
+}
+.game .grid .case:nth-child(1), 
+.game .grid .case:nth-child(2),
+.game .grid .case:nth-child(3){
+    border-top: 2px solid black;
+}
+.game .grid .case:nth-child(3n) {
+    border-right: 2px solid black;
+}
+.game .grid .case:nth-last-child(2),
+.game .grid .case:nth-last-child(3),
+.game .grid .case:nth-last-child(4) {
+    border-bottom: 2px solid black;
+}
+
+
+.croix::after,
+.rond::after {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 100%;
+    height: 100%;
+    font-size: 5rem;
+    
+}
+
+.croix::after {
+    content: "X";
+}
+
+.rond::after {
+    content: "O";
+}
+
+
+.win {
+    animation: color-change infinite 2.5s linear;
+}
+
+
+@keyframes color-change {
+    0% {
+        background-color: var(--color-win);
+    }
+    50% {
+        background-color: transparent;
+    }
+    100% {
+        background-color: var(--color-win);
+    }
+    
+}
+.result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    height: 50px;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+#reset {
+    background-color: #a5a5a5;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    border-radius: 20px;
+    cursor: "not-allowed";
+    box-shadow: 0 0 5px black;
+    transition: .5s;
+}
+
+.reset-available:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px black;
+}
+
+
+footer {
+    background-color: #a5a5a5;
+}
